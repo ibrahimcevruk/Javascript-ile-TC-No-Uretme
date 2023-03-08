@@ -1,0 +1,36 @@
+<button onclick="TCNoUret('sonuc')">ÜRET</button>
+<div id="sonuc"></div>
+
+<script type="text/javascript">
+function rastgeleSayi(min, max) {
+   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function TCNoUret(divAdi) {
+   var rakam   = [];
+   var tcNo    = "";
+   // ilk basamağı oluşturuyoruz. 0 olamayacağı için 1-9 arası alıyoruz.
+   rakam[0]    = rastgeleSayi(1,9);
+   // Diğer değerleri oluşuruyoruz. 2 ve 9 arası
+   // Diğer haneler için matematik işleteceğiz.
+   for(i = 1; i < 9; i++) {
+      rakam[i] = rastgeleSayi(0,9);
+   }
+   // Son basamakları matematiksel işleme tabi tutuyoruz.
+   rakam[9]   = ((rakam[0] + rakam[2] + rakam[4] + rakam[6] + rakam[8]) * 7 - (rakam[1] + rakam[3] + rakam[5] + rakam[7])) % 10;
+   rakam[10]  = (rakam[0] + rakam[1] + rakam[2] + rakam[3] + rakam[4] + rakam[5] + rakam[6] + rakam[7] + rakam[8] + rakam[9]) % 10;
+   // Oluşturulan tek tek değerleri toparlıyoruz.
+   tcNo =   rakam[0].toString() +
+            rakam[1].toString() +
+            rakam[2].toString() +
+            rakam[3].toString() + 
+            rakam[4].toString() +
+            rakam[5].toString() +
+            rakam[6].toString() +
+            rakam[7].toString() + 
+            rakam[8].toString() +
+            rakam[9].toString() +
+            rakam[10].toString();
+   // veee değeri yazdırıyoruz.
+   document.getElementById(divAdi).innerHTML = tcNo;
+}
+</script>
